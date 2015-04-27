@@ -90,7 +90,8 @@ public class AddToDoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-
+				Log.i(TAG, "Entered cancelButton.setOnClickListener.onClick method");
+				finish();
 
 				// TODO - Indicate result and finish
 
@@ -107,11 +108,11 @@ public class AddToDoActivity extends Activity {
 
 
 				// TODO - Reset data to default values
-
-
-                
-                
-                
+				Log.i(TAG, "Entered resetButton.setOnClickListener.onClick method");
+				mTitleText.setText("");
+				mDefaultStatusButton.setChecked(true);
+				mDefaultPriorityButton.setChecked(true);
+                             
 				// reset date and time
 				setDefaultDateTime();
 
@@ -127,18 +128,18 @@ public class AddToDoActivity extends Activity {
 
 
 				// gather ToDoItem data
-
+				Log.i(TAG, "Entered submitButton.setOnClickListener.onClick() method");
 
 				// TODO - Get the current Priority
-				Priority priority = null;
+				Priority priority = getPriority();
 
 				// TODO - Get the current Status
-				Status status = null;
+				Status status = getStatus();
 
 				// TODO - Get the current ToDoItem Title
 
 
-				String titleString = null;
+				String titleString = getToDoTitle();
 
 
 				// Construct the Date string
@@ -150,12 +151,9 @@ public class AddToDoActivity extends Activity {
 						fullDate);
 
 				// TODO - return data Intent and finish
-
-
-
-
-            
-            
+				setResult(RESULT_OK, data);
+				finish();
+                        
 			}
 		    });
 	}
