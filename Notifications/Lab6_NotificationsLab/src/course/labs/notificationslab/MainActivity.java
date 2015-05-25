@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements SelectionListener,
@@ -86,7 +85,7 @@ public class MainActivity extends Activity implements SelectionListener,
 			// TODO: Show a Toast message displaying
 			// R.string.download_in_progress string
 
-
+			Toast.makeText(getApplicationContext(), R.string.download_in_progress_string, Toast.LENGTH_LONG).show();
 			
 			
 			// Set up a BroadcastReceiver to receive an Intent when download
@@ -100,7 +99,9 @@ public class MainActivity extends Activity implements SelectionListener,
 					// Let sender know that the Intent was received
 					// by setting result code to MainActivity.IS_ALIVE
 
-
+					if(mRefreshReceiver.isOrderedBroadcast()){
+						mRefreshReceiver.setResultCode(MainActivity.IS_ALIVE);
+					}
 					
 					
 					
@@ -153,9 +154,8 @@ public class MainActivity extends Activity implements SelectionListener,
 		// TODO:
 		// Register the BroadcastReceiver to receive a
 		// DATA_REFRESHED_ACTION broadcast
-
-		
-		
+	    IntentFilter intentFilter = new IntentFilter(DATA_REFRESHED_ACTION);
+		registerReceiver(mRefreshReceiver, intentFilter);		
 		
 	}
 
@@ -167,7 +167,9 @@ public class MainActivity extends Activity implements SelectionListener,
 		// Note: check that mRefreshReceiver is not null before attempting to
 		// unregister in order to work around an Instrumentation issue
 
-
+		if(mRefreshReceiver!=null){
+			unregisterReceiver(mRefreshReceiver);
+		}
 		
 		
 		
