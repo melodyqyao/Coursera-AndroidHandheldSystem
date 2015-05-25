@@ -46,7 +46,8 @@ public class DownloaderTaskFragment extends Fragment {
 		// Prepare them for use with DownloaderTask.
 
 		Bundle bundle = this.getArguments();
-		ArrayList<Integer> resourceIDs = bundle.getIntegerArrayList(MainActivity.TAG_FRIEND_RES_IDS);
+		ArrayList<Integer> resourceIDs = bundle
+				.getIntegerArrayList(MainActivity.TAG_FRIEND_RES_IDS);
 
 		// TODO: Start the DownloaderTask
 		downloaderTask.execute(resourceIDs);
@@ -83,7 +84,6 @@ public class DownloaderTaskFragment extends Fragment {
 	// out). Ultimately, it must also pass newly available data back to
 	// the hosting Activity using the DownloadFinishedListener interface.
 
-
 	public class DownloaderTask extends
 			AsyncTask<ArrayList<Integer>, Void, String[]> {
 
@@ -98,7 +98,7 @@ public class DownloaderTaskFragment extends Fragment {
 		}
 
 		protected void onPostExecute(String[] feeds) {
-			if(mCallback!=null){
+			if (mCallback != null) {
 				mCallback.notifyDataRefreshed(feeds);
 			}
 		}
