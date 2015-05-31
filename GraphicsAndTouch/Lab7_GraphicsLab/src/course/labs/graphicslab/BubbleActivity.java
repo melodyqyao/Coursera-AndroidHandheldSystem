@@ -135,9 +135,9 @@ public class BubbleActivity extends Activity {
 				int children = mFrame.getChildCount();
 				for(int i=0; i<children; i++){
 					final BubbleView bubble = (BubbleView) mFrame.getChildAt(i);
-					if(bubble.intersects(event1.getX(),event1.getY())){
+					//if(bubble.intersects(event1.getX(),event1.getY())){
 						bubble.deflect(velocityX, velocityY);
-					}
+					//}
 				}
 				return true;
 			}
@@ -379,8 +379,8 @@ public class BubbleActivity extends Activity {
 
 			// TODO - set mDx and mDy to be the new velocities divided by the
 			// REFRESH_RATE
-			mDx = velocityX/(REFRESH_RATE*10);
-			mDy = velocityY/(REFRESH_RATE*10);
+			mDx = velocityX/REFRESH_RATE;
+			mDy = velocityY/REFRESH_RATE;
 
 		}
 
